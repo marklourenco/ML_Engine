@@ -8,6 +8,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 
 	ML_Engine::App& myApp = ML_Engine::MainApp();
     myApp.AddState<ShapeState>("ShapeState");
+    myApp.AddState<TriangleShapeState>("TriangleShapeState");
 	myApp.Run(config);
 
 	return 0;

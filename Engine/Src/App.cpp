@@ -5,6 +5,7 @@
 using namespace ML_Engine;
 using namespace ML_Engine::Core;
 using namespace ML_Engine::Graphics;
+using namespace ML_Engine::Input;
 
 void App::Run(const AppConfig& config)
 {
@@ -20,17 +21,22 @@ void App::Run(const AppConfig& config)
     );
     auto handle = myWindow.GetWindowHandle();
     GraphicsSystem::StaticInitialize(handle, false);
+    InputSystem::StaticInitialize(handle);
 
     // last step before running
 	ASSERT(mCurrentState != nullptr, "App: need an app state to run.");
 	mCurrentState->Initialize();
 
     // Process updates
+
+    InputSystem* input = InputSystem::Get();
     mRunning = true;
     while (mRunning)
     {
 		myWindow.ProcessMessage();
-		if (!myWindow.IsActive())
+        input->Update();
+
+		if (!myWindow.IsActive() || input->IsKeyPressed(KeyCode::ESCAPE))
 		{
             Quit();
             continue;
@@ -62,6 +68,7 @@ void App::Run(const AppConfig& config)
     LOG("App Quit");
 	mCurrentState->Terminate();
 
+    InputSystem::StaticTerminate();
     GraphicsSystem::StaticTerminate();
     myWindow.Terminate();
 }

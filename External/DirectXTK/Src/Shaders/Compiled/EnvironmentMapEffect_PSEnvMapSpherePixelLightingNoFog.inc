@@ -46,7 +46,7 @@
     dcl_2d s0
     dcl_2d s1
 
-#line 121 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\EnvironmentMapEffect.fx"
+#line 121 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\EnvironmentMapEffect.fx"
     add r0.xyz, -t1, c10
     nrm r1.xyz, r0  // ::eyeVector<0,1,2>
     nrm r0.xyz, t2  // ::worldNormal<0,1,2>
@@ -70,7 +70,7 @@
 #line 119
     texld r2, t0, s0
 
-#line 33 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
+#line 33 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
     dp3 r3.x, -c4, r0  // ::dotL<0>
     dp3 r3.y, -c5, r0  // ::dotL<1>
     dp3 r3.z, -c6, r0  // ::dotL<2>
@@ -86,7 +86,7 @@
     mov r3.xyz, c2  // Parameters::DiffuseColor<0,1,2>
     mad r0.xyz, r0, r3, c3  // ::result<0,1,2>
 
-#line 119 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\EnvironmentMapEffect.fx"
+#line 119 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\EnvironmentMapEffect.fx"
     mul r2, r2, t3  // ::color<0,1,2,3>
 
 #line 126
@@ -158,10 +158,10 @@ ret
 
 const BYTE EnvironmentMapEffect_PSEnvMapSpherePixelLightingNoFog[] =
 {
-     68,  88,  66,  67,  99,  73, 
-    225,  76, 252,  45, 214, 179, 
-     81,  67,  29,   5, 175, 193, 
-    158, 176,   1,   0,   0,   0, 
+     68,  88,  66,  67, 177, 218, 
+     38, 187, 143,  66, 155, 250, 
+    126, 224, 233, 138, 120,  56, 
+    222, 194,   1,   0,   0,   0, 
      52,  15,   0,   0,   4,   0, 
       0,   0,  48,   0,   0,   0, 
      80,   9,   0,   0, 128,  14, 
@@ -185,7 +185,7 @@ const BYTE EnvironmentMapEffect_PSEnvMapSpherePixelLightingNoFog[] =
      42,   0,   0,   0,  12,   1, 
       0,   0,  14,   0,   0,   0, 
     236,   4,   0,   0, 144,   2, 
-      0,   0,  68,  58,  92,  76, 
+      0,   0,  69,  58,  92,  76, 
      97,  83,  97, 108, 108, 101, 
      92,  84, 101, 114, 109,  32, 
      55,  92,  86,  71,  80,  50, 
@@ -204,7 +204,7 @@ const BYTE EnvironmentMapEffect_PSEnvMapSpherePixelLightingNoFog[] =
     114, 111, 110, 109, 101, 110, 
     116,  77,  97, 112,  69, 102, 
     102, 101,  99, 116,  46, 102, 
-    120,   0,  68,  58,  92,  76, 
+    120,   0,  69,  58,  92,  76, 
      97,  83,  97, 108, 108, 101, 
      92,  84, 101, 114, 109,  32, 
      55,  92,  86,  71,  80,  50, 

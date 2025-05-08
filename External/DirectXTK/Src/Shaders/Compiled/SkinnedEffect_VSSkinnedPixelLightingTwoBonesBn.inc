@@ -50,7 +50,7 @@
     dcl_texcoord3 v3  // vin<9,10,11,12>
     dcl_texcoord4 v4  // vin<13,14,15,16>
 
-#line 15 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Skinning.fxh"
+#line 15 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Skinning.fxh"
     mul r0.xy, v3, c243.z
     mova a0.xy, r0.yxzw
     mul r0, v4.y, c26[a0.x]
@@ -69,22 +69,22 @@
     dp4 r1.y, v0, r2  // Skin::vin<1>
     dp4 r1.z, v0, r3  // Skin::vin<2>
 
-#line 82 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
+#line 82 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
     mov r1.w, v0.w
     dp4 oPos.z, r1, c24  // ::VSSkinnedPixelLightingTwoBonesBn<15>
     dp4 oT1.x, r1, c15  // ::VSSkinnedPixelLightingTwoBonesBn<2>
     dp4 oT1.y, r1, c16  // ::VSSkinnedPixelLightingTwoBonesBn<3>
     dp4 oT1.z, r1, c17  // ::VSSkinnedPixelLightingTwoBonesBn<4>
 
-#line 11 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Utilities.fxh"
+#line 11 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Utilities.fxh"
     mad r4.xyz, v1, c243.x, c243.y  // ::BiasX2<0,1,2>
 
-#line 19 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Skinning.fxh"
+#line 19 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Skinning.fxh"
     dp3 r0.x, r4, r0  // ::Skin<0>
     dp3 r0.y, r4, r2  // ::Skin<1>
     dp3 r0.z, r4, r3  // ::Skin<2>
 
-#line 84 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
+#line 84 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
     dp3 r2.x, r0, c19
     dp3 r2.y, r0, c20
     dp3 r2.z, r0, c21
@@ -92,17 +92,17 @@
     rsq r0.x, r0.x
     mul oT2.xyz, r0.x, r2  // ::VSSkinnedPixelLightingTwoBonesBn<6,7,8>
 
-#line 11 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Common.fxh"
+#line 11 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Common.fxh"
     dp4 r0.x, r1, c14
     max r0.x, r0.x, c243.w
     min oT1.w, r0.x, -c243.y  // ::VSSkinnedPixelLightingTwoBonesBn<5>
 
-#line 82 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
+#line 82 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
     dp4 r0.x, r1, c22  // ::vout<0>
     dp4 r0.y, r1, c23  // ::vout<1>
     dp4 r0.z, r1, c25  // ::vout<3>
 
-#line 283 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\SkinnedEffect.fx"
+#line 283 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\SkinnedEffect.fx"
     mad oPos.xy, r0.z, c242, r0  // ::VSSkinnedPixelLightingTwoBonesBn<13,14>
     mov oPos.w, r0.z  // ::VSSkinnedPixelLightingTwoBonesBn<16>
 
@@ -165,10 +165,10 @@ ret
 
 const BYTE SkinnedEffect_VSSkinnedPixelLightingTwoBonesBn[] =
 {
-     68,  88,  66,  67,  36,  19, 
-     88,  17, 164,   2,  38,  97, 
-    249, 165, 179, 136, 199, 128, 
-     85,  57,   1,   0,   0,   0, 
+     68,  88,  66,  67,  39, 166, 
+     12, 212, 217,  68,   8,  79, 
+     59,  75, 179,  95, 195, 136, 
+     27, 230,   1,   0,   0,   0, 
     248,  16,   0,   0,   4,   0, 
       0,   0,  48,   0,   0,   0, 
     200,  10,   0,   0, 148,  15, 
@@ -191,7 +191,7 @@ const BYTE SkinnedEffect_VSSkinnedPixelLightingTwoBonesBn[] =
       0,   0,  44,   0,   0,   0, 
      68,   2,   0,   0,   7,   0, 
       0,   0, 196,   6,   0,   0, 
-    244,   3,   0,   0,  68,  58, 
+    244,   3,   0,   0,  69,  58, 
      92,  76,  97,  83,  97, 108, 
     108, 101,  92,  84, 101, 114, 
     109,  32,  55,  92,  86,  71, 
@@ -208,7 +208,7 @@ const BYTE SkinnedEffect_VSSkinnedPixelLightingTwoBonesBn[] =
      99,  92,  83, 104,  97, 100, 
     101, 114, 115,  92,  83, 107, 
     105, 110, 110, 105, 110, 103, 
-     46, 102, 120, 104,   0,  68, 
+     46, 102, 120, 104,   0,  69, 
      58,  92,  76,  97,  83,  97, 
     108, 108, 101,  92,  84, 101, 
     114, 109,  32,  55,  92,  86, 
@@ -226,7 +226,7 @@ const BYTE SkinnedEffect_VSSkinnedPixelLightingTwoBonesBn[] =
     100, 101, 114, 115,  92,  76, 
     105, 103, 104, 116, 105, 110, 
     103,  46, 102, 120, 104,   0, 
-     68,  58,  92,  76,  97,  83, 
+     69,  58,  92,  76,  97,  83, 
      97, 108, 108, 101,  92,  84, 
     101, 114, 109,  32,  55,  92, 
      86,  71,  80,  50,  52,  50, 
@@ -243,7 +243,7 @@ const BYTE SkinnedEffect_VSSkinnedPixelLightingTwoBonesBn[] =
      97, 100, 101, 114, 115,  92, 
      85, 116, 105, 108, 105, 116, 
     105, 101, 115,  46, 102, 120, 
-    104,   0,  68,  58,  92,  76, 
+    104,   0,  69,  58,  92,  76, 
      97,  83,  97, 108, 108, 101, 
      92,  84, 101, 114, 109,  32, 
      55,  92,  86,  71,  80,  50, 
@@ -260,7 +260,7 @@ const BYTE SkinnedEffect_VSSkinnedPixelLightingTwoBonesBn[] =
      83, 104,  97, 100, 101, 114, 
     115,  92,  67, 111, 109, 109, 
     111, 110,  46, 102, 120, 104, 
-      0,  68,  58,  92,  76,  97, 
+      0,  69,  58,  92,  76,  97, 
      83,  97, 108, 108, 101,  92, 
      84, 101, 114, 109,  32,  55, 
      92,  86,  71,  80,  50,  52, 

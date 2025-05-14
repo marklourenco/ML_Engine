@@ -110,9 +110,27 @@ MeshPC ML_Engine::Graphics::MeshBuilder::CreatePyramidPC(float size)
     int index = rand() % 100;
     const float hs = size * 0.5f;
 
-    // add all the vertices for a pyramid
+    mesh.vertices.push_back({ { -hs, 0.0f, -hs }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hs, 0.0f, -hs }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hs, 0.0f,  hs }, GetNextColor(index) });
+    mesh.vertices.push_back({ { -hs, 0.0f,  hs }, GetNextColor(index) });
 
-    // add all the indices
+    mesh.vertices.push_back({ { 0.0f, hs, 0.0f }, GetNextColor(index) });
+
+    // Add indices
+    mesh.indices = {
+        // front face
+        0, 1, 4,
+        // right face
+        1, 2, 4,
+        // back face
+        2, 3, 4,
+        // left face
+        3, 0, 4,
+        // base face
+        0, 1, 2,
+        0, 2, 3
+    };
 
     return mesh;
 }
@@ -125,9 +143,38 @@ MeshPC ML_Engine::Graphics::MeshBuilder::CreateRectanglePC(float width, float he
     const float hw = width * 0.5f;
     const float hh = height * 0.5f;
     const float hd = depth * 0.5f;
-    // add all the vertices for a rect
 
-    // add all the indices
+    mesh.vertices.push_back({ { -hw, -hh, -hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hw, -hh, -hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hw,  hh, -hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ { -hw,  hh, -hd }, GetNextColor(index) });
+
+    mesh.vertices.push_back({ { -hw, -hh,  hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hw, -hh,  hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hw,  hh,  hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ { -hw,  hh,  hd }, GetNextColor(index) });
+
+    // Add indices
+    mesh.indices = {
+        // front face
+        0, 1, 2,
+        0, 2, 3,
+        // back face
+        7, 5, 4,
+        7, 6, 5,
+        // right face
+        3, 2, 6,
+        3, 6, 7,
+        // left face
+        4, 5, 1,
+        4, 1, 0,
+        // top face
+        1, 5, 6,
+        1, 6, 2,
+        // bottom face
+        0, 3, 7,
+        0, 7, 4
+    };
 
     return mesh;
 }

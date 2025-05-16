@@ -20,6 +20,7 @@ namespace {
         index = (index + 1) % std::size(colorTable);
 		return colorTable[index];
     }
+
 }
 
 MeshPC MeshBuilder::CreateCubePC(float size, const Color& color)
@@ -110,26 +111,23 @@ MeshPC ML_Engine::Graphics::MeshBuilder::CreatePyramidPC(float size)
     int index = rand() % 100;
     const float hs = size * 0.5f;
 
-    mesh.vertices.push_back({ { -hs, 0.0f, -hs }, GetNextColor(index) });
-    mesh.vertices.push_back({ {  hs, 0.0f, -hs }, GetNextColor(index) });
-    mesh.vertices.push_back({ {  hs, 0.0f,  hs }, GetNextColor(index) });
-    mesh.vertices.push_back({ { -hs, 0.0f,  hs }, GetNextColor(index) });
-
     mesh.vertices.push_back({ { 0.0f, hs, 0.0f }, GetNextColor(index) });
+    mesh.vertices.push_back({ { -hs, -hs, -hs }, GetNextColor(index) });
+    mesh.vertices.push_back({ { -hs, -hs,  hs }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hs, -hs,  hs }, GetNextColor(index) });
+
+    mesh.vertices.push_back({ {  hs, -hs, -hs }, GetNextColor(index) });
 
     // Add indices
     mesh.indices = {
-        // front face
-        0, 1, 4,
-        // right face
-        1, 2, 4,
-        // back face
-        2, 3, 4,
-        // left face
-        3, 0, 4,
-        // base face
+        1, 2, 3,
+        1, 3, 4,
         0, 1, 2,
-        0, 2, 3
+        0, 2, 3,
+        0, 3, 4,
+        0, 4, 1,
+        1, 4, 3,
+        1, 3, 2
     };
 
     return mesh;
@@ -145,14 +143,14 @@ MeshPC ML_Engine::Graphics::MeshBuilder::CreateRectanglePC(float width, float he
     const float hd = depth * 0.5f;
 
     mesh.vertices.push_back({ { -hw, -hh, -hd }, GetNextColor(index) });
-    mesh.vertices.push_back({ {  hw, -hh, -hd }, GetNextColor(index) });
-    mesh.vertices.push_back({ {  hw,  hh, -hd }, GetNextColor(index) });
     mesh.vertices.push_back({ { -hw,  hh, -hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hw,  hh, -hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hw, -hh, -hd }, GetNextColor(index) });
 
     mesh.vertices.push_back({ { -hw, -hh,  hd }, GetNextColor(index) });
-    mesh.vertices.push_back({ {  hw, -hh,  hd }, GetNextColor(index) });
-    mesh.vertices.push_back({ {  hw,  hh,  hd }, GetNextColor(index) });
     mesh.vertices.push_back({ { -hw,  hh,  hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hw,  hh,  hd }, GetNextColor(index) });
+    mesh.vertices.push_back({ {  hw, -hh,  hd }, GetNextColor(index) });
 
     // Add indices
     mesh.indices = {

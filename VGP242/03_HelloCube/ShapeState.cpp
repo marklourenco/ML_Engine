@@ -92,6 +92,6 @@ void ShapeState::CreateShape()
     // Switch here
 
     // mMesh = MeshBuilder::CreateCubePC(1.0f);
-    mMesh = MeshBuilder::CreatePyramidPC(1.0f);
+    mMesh = MeshBuilder::CreatePyramidPC(0.5f);
     // mMesh = MeshBuilder::CreateRectanglePC(1.0f, 2.0f, 4.0f);
 }

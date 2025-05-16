@@ -21,7 +21,6 @@
     <ClInclude Include="Inc\GraphicsSystem.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Color.h" />
     <ClInclude Include="Inc\MeshBuffer.h">
       <Filter>Inc</Filter>
     </ClInclude>
@@ -44,6 +43,15 @@
       <Filter>Inc</Filter>
     </ClInclude>
     <ClInclude Include="Inc\MeshBuilder.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Texture.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Color.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Sampler.h">
       <Filter>Inc</Filter>
     </ClInclude>
   </ItemGroup>
@@ -70,6 +78,12 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\MeshBuilder.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Texture.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Sampler.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

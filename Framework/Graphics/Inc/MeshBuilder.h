@@ -16,5 +16,26 @@ namespace ML_Engine::Graphics
 
 		// rectangle
 		static MeshPC CreateRectanglePC(float width, float height, float depth);
+
+		// plane
+		static MeshPC CreatePlanePC(int numRows, int numColums, float spacing, bool horizontal = true);
+
+		// cylinder
+		static MeshPC CreateCylinderPC(int slices, int rings);
+
+		// sphere
+		static MeshPC CreateSpherePC(int slices, int rings, float radius);
+
+		// cube PX (textures)
+		static MeshPX CreateCubePX(float size);
+
+		// sphere PX
+		static MeshPX CreateSpherePX(int slices, int rings, float radius);
+
+		// plane PX
+		static MeshPX CreatePlanePX(int numRows, int numColums, float spacing, bool horizontal = true);
+
+		// sky
+		static MeshPX CreateSkySpherePX(int slices, int rings, float radius);
 	};
 }

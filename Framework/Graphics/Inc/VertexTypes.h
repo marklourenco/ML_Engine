@@ -27,7 +27,7 @@ namespace ML_Engine::Graphics
 	{
 		VERTEX_FORMAT(VE_Position | VE_Color);
 		Math::Vector3 position;
-		Color color;;
+		Color color;
 	};
 
 	struct VertexPX

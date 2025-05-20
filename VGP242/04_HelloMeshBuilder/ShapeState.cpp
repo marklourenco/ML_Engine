@@ -70,6 +70,22 @@ void ShapeState::Update(float deltaTime)
         mCamera.Yaw(input->GetMouseMoveX() * turnSpeed * deltaTime); // INVERT IF U WANT
         mCamera.Pitch(input->GetMouseMoveY() * turnSpeed * deltaTime);
     }
+
+    // if 1-4 keys select shapes
+    if (input->IsKeyPressed(KeyCode::ONE))      mCurrentShape = ShapeType::Sphere;
+	if (input->IsKeyPressed(KeyCode::TWO))      mCurrentShape = ShapeType::PlaneHorizontal;
+	if (input->IsKeyPressed(KeyCode::THREE))      mCurrentShape = ShapeType::PlaneVertical;
+    if (input->IsKeyPressed(KeyCode::FOUR))    mCurrentShape = ShapeType::SkySphere;
+
+    // terminate and recreate
+    if (input->IsKeyPressed(KeyCode::ONE) || input->IsKeyPressed(KeyCode::TWO) ||
+        input->IsKeyPressed(KeyCode::THREE) || input->IsKeyPressed(KeyCode::FOUR))
+    {
+        CreateShape();
+        mMeshBuffer.Terminate();
+        mMeshBuffer.Initialize(mMesh);
+    }
+
 }
 
 void ShapeState::Render()
@@ -98,15 +114,21 @@ void ShapeState::Render()
 
 void ShapeState::CreateShape()
 {
-    // Switch here
+    // re create shape here (default sphere)
 
-    // mMesh = MeshBuilder::CreateCubePC(1.0f);
-    // mMesh = MeshBuilder::CreatePyramidPC(0.5f);
-    // mMesh = MeshBuilder::CreateRectanglePC(1.0f, 2.0f, 4.0f);
-    // mMesh = MeshBuilder::CreatePlanePC(10, 10, 1.0f, false);
-    // mMesh = MeshBuilder::CreateCylinderPC(20, 3);
-    // mMesh = MeshBuilder::CreateSpherePC(30, 30, 1.0f);
-    // mMesh = MeshBuilder::CreateSpherePX(30, 30, 1.0f);
-    // mMesh = MeshBuilder::CreateSkySpherePX(30, 30, 200.0f);
-    mMesh = MeshBuilder::CreatePlanePX(30, 30, 1.0f);
+    switch (mCurrentShape)
+    {
+    case ShapeType::Sphere:
+        mMesh = MeshBuilder::CreateSpherePX(30, 30, 1.0f);
+        break;
+	case ShapeType::PlaneHorizontal:
+		mMesh = MeshBuilder::CreatePlanePX(30, 30, 1.0f, true);
+		break;
+	case ShapeType::PlaneVertical:
+		mMesh = MeshBuilder::CreatePlanePX(30, 30, 1.0f, false);
+		break;
+    case ShapeType::SkySphere:
+        mMesh = MeshBuilder::CreateSkySpherePX(30, 30, 200.0f);
+        break;
+    }
 }

@@ -2,6 +2,14 @@
 
 #include <Inc/ML_Engine.h>
 
+enum class ShapeType
+{
+    Sphere,
+    PlaneHorizontal,
+    PlaneVertical,
+    SkySphere
+};
+
 class ShapeState : public ML_Engine::AppState
 {
 public:
@@ -23,4 +31,7 @@ protected:
     // new
     ML_Engine::Graphics::Texture mTexture;
 	ML_Engine::Graphics::Sampler mSampler;
+
+    // swap
+	ShapeType mCurrentShape = ShapeType::Sphere;
 };

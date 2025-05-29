@@ -20,12 +20,13 @@ void GameState::Render()
 {
 }
 
-bool gCheckValue = false;
+bool gInvertValue = false;
 float gFloatVal = 0.0f;
 Math::Vector3 gV0 = Math::Vector3::Zero;
 Math::Vector3 gV1 = Math::Vector3::One;
 Math::Vector3 gV2 = Math::Vector3::XAxis;
 Color gColor = Colors::White;
+Color gSavedColor = Colors::White;
 
 
 enum class Shape
@@ -54,15 +55,25 @@ void GameState::DebugUI()
 {
     ImGui::Begin("Debug", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
     ImGui::Text("Hello Yall");
-    ImGui::Checkbox("IsChecked", &gCheckValue);
+    ImGui::Checkbox("Invert Color", &gInvertValue);
     ImGui::DragFloat("Float", &gFloatVal);
 	ImGui::DragFloat3("V0", &gV0.x, 0.1f);
 	ImGui::DragFloat3("V1", &gV1.x, 0.1f);
 	ImGui::DragFloat3("V2", &gV2.x, 0.1f);
 	ImGui::ColorEdit4("Color", &gColor.r);
 
+	if (gInvertValue)
+	{
+		gSavedColor = gColor;
+		gColor = Color(1.0f - gColor.r, 1.0f - gColor.g, 1.0f - gColor.b, gColor.a);
+	}
+    else
+    {
+		gColor = gSavedColor;
+    }
+
     int currentShape = (int)gCurrentShape;
-	if(ImGui::Combo("Shape", &currentShape, gShapeNames, std::size(gShapeNames)));
+	if(ImGui::Combo("Shape", &currentShape, gShapeNames, std::size(gShapeNames)))
     {
         gCurrentShape = (Shape)currentShape;
     }
@@ -76,21 +87,21 @@ void GameState::DebugUI()
     {
         // ImGui::DragFloat("Min");
 		// ImGui::DragFloat("Max");
-        SimpleDraw::AddFilledAABB(gV0, gV1, gColor);
+        SimpleDraw::AddFilledAABB(gV0 + gV2, gV1 + gV2, gColor);
         break;
     }
     case Shape::AABBFilled:
     {
         // ImGui::DragFloat("Min");
         // ImGui::DragFloat("Max");
-        SimpleDraw::AddFilledAABB(gV0, gV1, gColor);
+        SimpleDraw::AddFilledAABB(gV0 + gV2, gV1 + gV2, gColor);
         break;
     }
     case Shape::Sphere:
     {
 		// ImGui::DragFloat("Min");
 		// ImGui::DragFloat("Max");
-		SimpleDraw::AddSphere(60, 60, gFloatVal, gColor, gV0);
+		SimpleDraw::AddSphere(60, 60, gFloatVal, gColor, gV0 + gV2);
 		break;
     }
     case Shape::GroundPlane:
@@ -104,20 +115,21 @@ void GameState::DebugUI()
     {
         // ImGui::DragFloat("Min");
         // ImGui::DragFloat("Max");
-        SimpleDraw::AddGroundCircle(60, gFloatVal, gColor, gV0);
+        SimpleDraw::AddGroundCircle(60, gFloatVal, gColor, gV0 + gV2);
         break;
     }
     case Shape::Transform:
     {
 		// ImGui::DragFloat("Min");
 		// ImGui::DragFloat("Max");
-		SimpleDraw::AddTransform(Math::Matrix4::Identity);
+		SimpleDraw::AddTransform(Math::Matrix4::Translation(gV2));
 		break;
     }
     }
 
     SimpleDraw::Render(mCamera);
 }
+
 
 void GameState::UpdateCamera(float deltaTime)
 {

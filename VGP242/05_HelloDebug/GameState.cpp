@@ -25,9 +25,8 @@ float gFloatVal = 0.0f;
 Math::Vector3 gV0 = Math::Vector3::Zero;
 Math::Vector3 gV1 = Math::Vector3::One;
 Math::Vector3 gV2 = Math::Vector3::XAxis;
+Color gDisplayColor = Colors::White;
 Color gColor = Colors::White;
-Color gSavedColor = Colors::White;
-
 
 enum class Shape
 {
@@ -64,12 +63,11 @@ void GameState::DebugUI()
 
 	if (gInvertValue)
 	{
-		gSavedColor = gColor;
-		gColor = Color(1.0f - gColor.r, 1.0f - gColor.g, 1.0f - gColor.b, gColor.a);
+		gDisplayColor = Color(1.0f - gColor.r, 1.0f - gColor.g, 1.0f - gColor.b, gColor.a);
 	}
     else
     {
-		gColor = gSavedColor;
+		gDisplayColor = gColor;
     }
 
     int currentShape = (int)gCurrentShape;
@@ -87,35 +85,35 @@ void GameState::DebugUI()
     {
         // ImGui::DragFloat("Min");
 		// ImGui::DragFloat("Max");
-        SimpleDraw::AddFilledAABB(gV0 + gV2, gV1 + gV2, gColor);
+        SimpleDraw::AddFilledAABB(gV0 + gV2, gV1 + gV2, gDisplayColor);
         break;
     }
     case Shape::AABBFilled:
     {
         // ImGui::DragFloat("Min");
         // ImGui::DragFloat("Max");
-        SimpleDraw::AddFilledAABB(gV0 + gV2, gV1 + gV2, gColor);
+        SimpleDraw::AddFilledAABB(gV0 + gV2, gV1 + gV2, gDisplayColor);
         break;
     }
     case Shape::Sphere:
     {
 		// ImGui::DragFloat("Min");
 		// ImGui::DragFloat("Max");
-		SimpleDraw::AddSphere(60, 60, gFloatVal, gColor, gV0 + gV2);
+		SimpleDraw::AddSphere(60, 60, gFloatVal, gDisplayColor, gV0 + gV2);
 		break;
     }
     case Shape::GroundPlane:
     {
         // ImGui::DragFloat("Min");
         // ImGui::DragFloat("Max");
-		SimpleDraw::AddGroundPlane(gFloatVal, gColor);
+		SimpleDraw::AddGroundPlane(gFloatVal, gDisplayColor);
 		break;
     }
     case Shape::GroundCircle:
     {
         // ImGui::DragFloat("Min");
         // ImGui::DragFloat("Max");
-        SimpleDraw::AddGroundCircle(60, gFloatVal, gColor, gV0 + gV2);
+        SimpleDraw::AddGroundCircle(60, gFloatVal, gDisplayColor, gV0 + gV2);
         break;
     }
     case Shape::Transform:

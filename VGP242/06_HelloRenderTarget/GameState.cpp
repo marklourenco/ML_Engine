@@ -8,9 +8,42 @@ void GameState::Initialize()
 {
     mCamera.SetPosition({ 0.0f, 1.0f, -3.0f });
     mCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
+
+    mRenderTargetCamera.SetPosition({ 0.0f, 1.0f, -3.0f });
+    mRenderTargetCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
+    mRenderTargetCamera.SetAspectRatio(1.0f);
+
+    // initialize gpu communication
+    std::filesystem::path shaderFile = L"../../Assets/Shaders/DoTexture.fx";
+    mVertexShader.Initialize<VertexPX>(shaderFile);
+	mPixelShader.Initialize(shaderFile);
+    mSampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
+    mTransformBuffer.Initialize(sizeof(Math::Matrix4));
+
+    // initialize render object
+    MeshPX sphere = MeshBuilder::CreateSpherePX(60, 60, 1.0f);
+    mObject0.meshBuffer.Initialize(sphere);
+    mObject1.meshBuffer.Initialize(sphere);
+
+
+    mObject0.textureId = TextureManager::Get()->LoadTexture(L"sun.jpg");
+    mObject1.textureId = TextureManager::Get()->LoadTexture(L"earth.jpg");
+    mObject1.matWorld = Math::Matrix4::Translation({ 0.0f, 1.0f, 0.0f });
+
+    constexpr uint32_t size = 512;
+    mRenderTarget.Initialize(size, size, RenderTarget::Format::RGBA_U32);
 }
 void GameState::Terminate()
 {
+	mRenderTarget.Terminate();
+    TextureManager::Get()->ReleaseTexture(mObject0.textureId);
+	TextureManager::Get()->ReleaseTexture(mObject1.textureId);
+    mObject0.meshBuffer.Terminate();
+    mObject1.meshBuffer.Terminate();
+	mTransformBuffer.Terminate();
+	mSampler.Terminate();
+	mPixelShader.Terminate();
+	mVertexShader.Terminate();
 }
 void GameState::Update(float deltaTime)
 {
@@ -18,6 +51,35 @@ void GameState::Update(float deltaTime)
 }
 void GameState::Render()
 {
+    SimpleDraw::AddGroundPlane(10.0f, Colors::DarkGray);
+    SimpleDraw::Render(mCamera);
+
+    // render to the render target
+    mRenderTarget.BeginRender();
+        RenderObject(mObject0, mRenderTargetCamera);
+        RenderObject(mObject1, mRenderTargetCamera);
+	mRenderTarget.EndRender();
+
+    // render to the scene
+    RenderObject(mObject0, mCamera);
+    RenderObject(mObject1, mCamera);
+}
+
+void GameState::RenderObject(const Object& object, const Camera& camera)
+{
+    const Math::Matrix4 matView = camera.GetViewMatrix();
+    const Math::Matrix4 matProj = camera.GetProjectionMatrix();
+    const Math::Matrix4 matFinal = object.matWorld * matView * matProj;
+    const Math::Matrix4 wvp = Math::Transpose(matFinal);
+    mTransformBuffer.Update(&wvp);
+
+    mVertexShader.Bind();
+    mPixelShader.Bind();
+    mSampler.BindPS(0);
+    mTransformBuffer.BindVS(0);
+
+    TextureManager::Get()->BindPS(object.textureId, 0);
+    object.meshBuffer.Render();
 }
 
 bool gInvertValue = false;
@@ -76,10 +138,6 @@ void GameState::DebugUI()
         gCurrentShape = (Shape)currentShape;
     }
 
-    ImGui::End();
-
-
-    SimpleDraw::AddGroundPlane(10.0f, Colors::DarkGray);
 
     switch (gCurrentShape)
     {
@@ -128,7 +186,18 @@ void GameState::DebugUI()
     }
     }
 
-    SimpleDraw::Render(mCamera);
+    ImGui::Separator();
+    ImGui::Text("RenderTarget");
+    ImGui::Image(
+        mRenderTarget.GetRawData(),
+        { 128, 128 },
+        { 0, 0 },
+        { 1, 1 },
+        { 1, 1, 1, 1 },
+        { 1, 1, 1, 1 }
+    );
+
+    ImGui::End();
 }
 
 

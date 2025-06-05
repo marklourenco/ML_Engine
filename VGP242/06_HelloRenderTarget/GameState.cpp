@@ -4,6 +4,16 @@ using namespace ML_Engine;
 using namespace ML_Engine::Graphics;
 using namespace ML_Engine::Input;
 
+enum class CameraTarget
+{
+    Sun,
+    Earth
+};
+
+CameraTarget gCurrentTarget = CameraTarget::Sun;
+const char* gTargetNames[] = { "Sun", "Earth" };
+
+
 void GameState::Initialize()
 {
     mCamera.SetPosition({ 0.0f, 1.0f, -3.0f });
@@ -48,6 +58,19 @@ void GameState::Terminate()
 void GameState::Update(float deltaTime)
 {
 	UpdateCamera(deltaTime);
+
+    Math::Vector3 targetPosition = Math::Vector3::Zero;
+    switch (gCurrentTarget)
+    {
+    case CameraTarget::Sun:
+        targetPosition = Math::GetTranslation(mObject0.matWorld);
+        break;
+    case CameraTarget::Earth:
+        targetPosition = Math::GetTranslation(mObject1.matWorld);
+        break;
+    }
+
+    mRenderTargetCamera.SetLookAt(targetPosition);
 }
 void GameState::Render()
 {
@@ -56,8 +79,15 @@ void GameState::Render()
 
     // render to the render target
     mRenderTarget.BeginRender();
+    switch (gCurrentTarget)
+    {
+    case CameraTarget::Sun:
         RenderObject(mObject0, mRenderTargetCamera);
+        break;
+    case CameraTarget::Earth:
         RenderObject(mObject1, mRenderTargetCamera);
+        break;
+    }
 	mRenderTarget.EndRender();
 
     // render to the scene
@@ -196,6 +226,26 @@ void GameState::DebugUI()
         { 1, 1, 1, 1 },
         { 1, 1, 1, 1 }
     );
+
+    int currentTarget = static_cast<int>(gCurrentTarget);
+    if (ImGui::Combo("Camera Target", &currentTarget, gTargetNames, IM_ARRAYSIZE(gTargetNames)))
+    {
+        gCurrentTarget = static_cast<CameraTarget>(currentTarget);
+
+        Math::Vector3 targetPosition = Math::Vector3::Zero;
+        switch (gCurrentTarget)
+        {
+        case CameraTarget::Sun:
+            targetPosition = Math::GetTranslation(mObject0.matWorld);
+            break;
+        case CameraTarget::Earth:
+            targetPosition = Math::GetTranslation(mObject1.matWorld);
+            break;
+        }
+
+        mRenderTargetCamera.SetLookAt(targetPosition);
+    }
+
 
     ImGui::End();
 }

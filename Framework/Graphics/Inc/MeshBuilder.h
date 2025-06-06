@@ -39,6 +39,6 @@ namespace ML_Engine::Graphics
 		static MeshPX CreateSkySpherePX(int slices, int rings, float radius);
 
 		// load obj
-		static MeshPX CreateOBJPX(const std::filesystem::path& filePath);
+		static MeshPX CreateOBJPX(const std::filesystem::path& filePath, float scale);
 	};
 }

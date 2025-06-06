@@ -440,7 +440,7 @@ MeshPX ML_Engine::Graphics::MeshBuilder::CreateSkySpherePX(int slices, int rings
     return mesh;
 }
 
-MeshPX MeshBuilder::CreateOBJPX(const std::filesystem::path& filePath)
+MeshPX MeshBuilder::CreateOBJPX(const std::filesystem::path& filePath, float scale)
 {
     MeshPX mesh;
     FILE* file = nullptr;
@@ -451,7 +451,7 @@ MeshPX MeshBuilder::CreateOBJPX(const std::filesystem::path& filePath)
     std::vector<Math::Vector3> positions;
     std::vector<Math::Vector2> uvCoords;
     std::vector<uint32_t> positionIndices;
-    std::vector<uint32_t> uvIndicies;
+    std::vector<uint32_t> uvIndices;
 
     while (true)
     {
@@ -471,19 +471,40 @@ MeshPX MeshBuilder::CreateOBJPX(const std::filesystem::path& filePath)
         {
             float u, v = 0.0f;
             fscanf_s(file, "%f %f\n", &u, &v);
-            uvCoords.push_back({ u, v });
+            uvCoords.push_back({ u, 1.0f - v });
         }
         else if (strcmp(buffer, "f") == 0)
         {
-            uint32_t p[3];
-            uint32_t uv[3];
-            uint32_t n[3];
-            int count = fscanf_s(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &p[0], &uv[0], &n[0], &p[1], &uv[1], &n[1], &p[2], &uv[2], &n[2]);
-            ASSERT(count == 6, "MeshBuilder: format not recognized for %s", filePath.u8string().c_str());
-            for (uint32_t i = 0; i < 3; i++)
+            uint32_t p[4];
+            uint32_t uv[4];
+            int count = fscanf_s(file, "%d/%d/%*d %d/%d/%*d %d/%d/%*d %d/%d/%*d\n", &p[0], &uv[0], &p[1], &uv[1], &p[2], &uv[2], &p[3], &uv[3]);
+            if (count % 3 == 0)
             {
-                positionIndices.push_back(p[i]);
-                uvIndicies.push_back(uv[i]);
+                for (uint32_t i = 0; i < 3; i++)
+                {
+                    positionIndices.push_back(p[i] - 1);
+                    uvIndices.push_back(uv[i] - 1);
+                }
+            }
+            else
+            {
+                // triangle 1
+                positionIndices.push_back(p[0] - 1);
+                positionIndices.push_back(p[1] - 1);
+                positionIndices.push_back(p[2] - 1);
+                // triangle 2
+                positionIndices.push_back(p[0] - 1);
+                positionIndices.push_back(p[2] - 1);
+                positionIndices.push_back(p[3] - 1);
+
+                // triangle 1
+                uvIndices.push_back(uv[0] - 1);
+                uvIndices.push_back(uv[1] - 1);
+                uvIndices.push_back(uv[2] - 1);
+                // triangle 2
+                uvIndices.push_back(uv[0] - 1);
+                uvIndices.push_back(uv[2] - 1);
+                uvIndices.push_back(uv[3] - 1);
             }
         }
     }
@@ -491,8 +512,14 @@ MeshPX MeshBuilder::CreateOBJPX(const std::filesystem::path& filePath)
     mesh.vertices.resize(positions.size());
     for(uint32_t i = 0; i < positions.size(); i++)
     {
-        mesh.vertices[i].position = positions[i] - 1;
-        mesh.vertices[i].uvCoord = i < uvCoords.size()? uvCoords[i] : Math::Vector2::Zero;
+        mesh.vertices[i].position = positions[i] * scale;
+    }
+    if (uvCoords.size() > 0)
+    {
+        for (uint32_t i = 0; i < uvIndices.size(); i++)
+        {
+            mesh.vertices[positionIndices[i]].uvCoord = uvCoords[uvIndices[i]];
+        }
     }
     mesh.indices = std::move(positionIndices);
 

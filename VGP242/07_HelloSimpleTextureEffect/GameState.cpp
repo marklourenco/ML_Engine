@@ -31,7 +31,7 @@ void GameState::Initialize()
     mObject0.mesh.Initialize(sphere);
     
 
-    MeshPX sword = MeshBuilder::CreateOBJPX(L"../../Assets/Models/Sword/SlothSword.obj");
+    MeshPX sword = MeshBuilder::CreateOBJPX(L"../../Assets/Models/Sword/SlothSword.obj", 0.1f);
     mObject1.mesh.Initialize(sword);
     mObject1.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Models/Sword/SlothSword.ppg");
     mObject1.matWorld = Math::Matrix4::Translation({ 0.0f, 1.0f, 0.0f });

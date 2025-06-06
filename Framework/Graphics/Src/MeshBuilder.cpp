@@ -439,3 +439,62 @@ MeshPX ML_Engine::Graphics::MeshBuilder::CreateSkySpherePX(int slices, int rings
 
     return mesh;
 }
+
+MeshPX MeshBuilder::CreateOBJPX(const std::filesystem::path& filePath)
+{
+    MeshPX mesh;
+    FILE* file = nullptr;
+    fopen_s(&file, filePath.u8string().c_str(), "r");
+    ASSERT(file != nullptr, "MeshBuilder: Can't open file %s", filePath.u8string().c_str());
+
+    // read in file
+    std::vector<Math::Vector3> positions;
+    std::vector<Math::Vector2> uvCoords;
+    std::vector<uint32_t> positionIndices;
+    std::vector<uint32_t> uvIndicies;
+
+    while (true)
+    {
+        char buffer[128];
+        int result = fscanf_s(file, "%s", buffer, (uint32_t)std::size(buffer));
+        if (result == EOF)
+        {
+            break;
+        }
+        if (strcmp(buffer, "v") == 0)
+        {
+            float x, y, z = 0.0f;
+            fscanf_s(file, "%f %f %f\n", &x, &y, &z);
+            positions.push_back({ x, y, z });
+        }
+        else if (strcmp(buffer, "vt") == 0)
+        {
+            float u, v = 0.0f;
+            fscanf_s(file, "%f %f\n", &u, &v);
+            uvCoords.push_back({ u, v });
+        }
+        else if (strcmp(buffer, "f") == 0)
+        {
+            uint32_t p[3];
+            uint32_t uv[3];
+            uint32_t n[3];
+            int count = fscanf_s(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &p[0], &uv[0], &n[0], &p[1], &uv[1], &n[1], &p[2], &uv[2], &n[2]);
+            ASSERT(count == 6, "MeshBuilder: format not recognized for %s", filePath.u8string().c_str());
+            for (uint32_t i = 0; i < 3; i++)
+            {
+                positionIndices.push_back(p[i]);
+                uvIndicies.push_back(uv[i]);
+            }
+        }
+    }
+    fclose(file);
+    mesh.vertices.resize(positions.size());
+    for(uint32_t i = 0; i < positions.size(); i++)
+    {
+        mesh.vertices[i].position = positions[i] - 1;
+        mesh.vertices[i].uvCoord = i < uvCoords.size()? uvCoords[i] : Math::Vector2::Zero;
+    }
+    mesh.indices = std::move(positionIndices);
+
+    return mesh;
+}

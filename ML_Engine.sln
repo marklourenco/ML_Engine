@@ -48,6 +48,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "05_HelloDebug", "VGP242\05_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "06_HelloRenderTarget", "VGP242\06_HelloRenderTarget\06_HelloRenderTarget.vcxproj", "{81335F99-1930-4D90-BF0F-A26155BAB168}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "07_HelloSimpleTextureEffect", "VGP242\07_HelloSimpleTextureEffect\07_HelloSimpleTextureEffect.vcxproj", "{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -160,6 +162,14 @@ Global
 		{81335F99-1930-4D90-BF0F-A26155BAB168}.Release|x64.Build.0 = Release|x64
 		{81335F99-1930-4D90-BF0F-A26155BAB168}.Release|x86.ActiveCfg = Release|Win32
 		{81335F99-1930-4D90-BF0F-A26155BAB168}.Release|x86.Build.0 = Release|Win32
+		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Debug|x64.ActiveCfg = Debug|x64
+		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Debug|x64.Build.0 = Debug|x64
+		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Debug|x86.ActiveCfg = Debug|Win32
+		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Debug|x86.Build.0 = Debug|Win32
+		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Release|x64.ActiveCfg = Release|x64
+		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Release|x64.Build.0 = Release|x64
+		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Release|x86.ActiveCfg = Release|Win32
+		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +189,7 @@ Global
 		{52D656A2-A2F4-4C54-A3C7-653427BED1E8} = {63B8F4EA-3841-4628-A365-0ADA33FF7FEF}
 		{FEF39BED-4F39-45F5-9903-84DF7FE597CB} = {55CF5681-01A0-443E-B547-DFBD373CD780}
 		{81335F99-1930-4D90-BF0F-A26155BAB168} = {55CF5681-01A0-443E-B547-DFBD373CD780}
+		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8} = {55CF5681-01A0-443E-B547-DFBD373CD780}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D97CCC11-9EBE-41ED-A727-A06D5C430B60}

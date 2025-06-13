@@ -50,6 +50,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "06_HelloRenderTarget", "VGP
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "07_HelloSimpleTextureEffect", "VGP242\07_HelloSimpleTextureEffect\07_HelloSimpleTextureEffect.vcxproj", "{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "08_HelloSolarSystem", "VGP242\08_HelloSolarSystem\08_HelloSolarSystem.vcxproj", "{A7FCB398-14EB-454B-A709-C1CAD37D43D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -170,6 +172,14 @@ Global
 		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Release|x64.Build.0 = Release|x64
 		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Release|x86.ActiveCfg = Release|Win32
 		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8}.Release|x86.Build.0 = Release|Win32
+		{A7FCB398-14EB-454B-A709-C1CAD37D43D1}.Debug|x64.ActiveCfg = Debug|x64
+		{A7FCB398-14EB-454B-A709-C1CAD37D43D1}.Debug|x64.Build.0 = Debug|x64
+		{A7FCB398-14EB-454B-A709-C1CAD37D43D1}.Debug|x86.ActiveCfg = Debug|Win32
+		{A7FCB398-14EB-454B-A709-C1CAD37D43D1}.Debug|x86.Build.0 = Debug|Win32
+		{A7FCB398-14EB-454B-A709-C1CAD37D43D1}.Release|x64.ActiveCfg = Release|x64
+		{A7FCB398-14EB-454B-A709-C1CAD37D43D1}.Release|x64.Build.0 = Release|x64
+		{A7FCB398-14EB-454B-A709-C1CAD37D43D1}.Release|x86.ActiveCfg = Release|Win32
+		{A7FCB398-14EB-454B-A709-C1CAD37D43D1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -190,6 +200,7 @@ Global
 		{FEF39BED-4F39-45F5-9903-84DF7FE597CB} = {55CF5681-01A0-443E-B547-DFBD373CD780}
 		{81335F99-1930-4D90-BF0F-A26155BAB168} = {55CF5681-01A0-443E-B547-DFBD373CD780}
 		{E4C49A77-BCE4-46CA-AF15-BF77751A34D8} = {55CF5681-01A0-443E-B547-DFBD373CD780}
+		{A7FCB398-14EB-454B-A709-C1CAD37D43D1} = {55CF5681-01A0-443E-B547-DFBD373CD780}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D97CCC11-9EBE-41ED-A727-A06D5C430B60}

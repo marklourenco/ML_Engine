@@ -10,7 +10,7 @@ using namespace ML_Engine::Graphics;
 void SimpleTextureEffect::Initialize()
 {
     std::filesystem::path shaderPath = L"../../Assets/Shaders/DoTexture.fx";
-    mVertexShader.Initialize<VertexPC>(shaderPath);
+    mVertexShader.Initialize<VertexPX>(shaderPath);
     mPixelShader.Initialize(shaderPath);
     mSampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
     mTransformBuffer.Initialize(sizeof(Math::Matrix4));

@@ -32,8 +32,14 @@ namespace ML_Engine::Graphics
 		// sphere PX
 		static MeshPX CreateSpherePX(int slices, int rings, float radius);
 
+		// sphere
+		static Mesh CreateSphere(int slices, int rings, float radius);
+
 		// plane PX
 		static MeshPX CreatePlanePX(int numRows, int numColums, float spacing, bool horizontal = true);
+
+		// plane 
+		static Mesh CreatePlane(int numRows, int numColums, float spacing, bool horizontal = true);
 
 		// sky
 		static MeshPX CreateSkySpherePX(int slices, int rings, float radius);

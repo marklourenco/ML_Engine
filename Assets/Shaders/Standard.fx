@@ -76,14 +76,14 @@ float4 PS(VS_OUTPUT input) : SV_Target
     float4 ambient = lightAmbient * materialAmbient;
     
     // Diffuse
-    float4 d = saturate(dot(light, n));
+    float d = saturate(dot(light, n));
     float4 diffuse = d * lightDiffuse * materialDiffuse;
     
     // Specular
     float3 r = reflect(-light, n);
     float base = saturate(dot(r, view));
     float s = pow(base, materialShininess);
-    float4 specular = lightSpecular * materialSpecular;
+    float4 specular = s * lightSpecular * materialSpecular;
 
     // colors
     float4 diffuseMapColor = diffuseMap.Sample(textureSampler, input.texCoord);

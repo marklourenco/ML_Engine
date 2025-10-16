@@ -5,7 +5,7 @@ namespace ML_Engine::Graphics
 {
 	struct Material
 	{
-		Color emmisive = Colors::Black;
+		Color emissive = Colors::Black;
 		Color ambient = Colors::White;
 		Color diffuse = Colors::White;
 		Color specular = Colors::White;

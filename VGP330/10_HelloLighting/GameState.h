@@ -19,5 +19,7 @@ private:
 	ML_Engine::Graphics::DirectionalLight mDirectionalLight;
 
 	ML_Engine::Graphics::RenderObject mRenderObject;
+	ML_Engine::Graphics::RenderObject mRenderObjectFloor;
+	ML_Engine::Graphics::RenderObject mRenderObjectRock;
 	ML_Engine::Graphics::StandardEffect mStandardEffect;
 };

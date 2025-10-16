@@ -4,6 +4,8 @@ using namespace ML_Engine;
 using namespace ML_Engine::Graphics;
 using namespace ML_Engine::Input;
 
+static int currentObject = 0;
+const char* objects[] = { "earth", "rocks", "bricks" };
 
 void GameState::Initialize()
 {
@@ -20,6 +22,22 @@ void GameState::Initialize()
     TextureManager* tm = TextureManager::Get();
     mRenderObject.diffuseMapId = tm->LoadTexture("earth.jpg");
     mRenderObject.specMapId = tm->LoadTexture("earth_spec.jpg");
+    mRenderObject.normalMapId = tm->LoadTexture("earth_normal.jpg");
+    mRenderObject.bumpMapId = tm->LoadTexture("earth_bump.jpg");
+
+    Mesh meshFloor = MeshBuilder::CreatePlane(3, 3, 3);
+    mRenderObjectFloor.meshBuffer.Initialize(meshFloor);
+    mRenderObjectFloor.diffuseMapId = tm->LoadTexture("bricks.jpg");
+    mRenderObjectFloor.specMapId = tm->LoadTexture("bricks_spec.jpg");
+    mRenderObjectFloor.normalMapId = tm->LoadTexture("bricks_normal.jpg");
+    mRenderObjectFloor.bumpMapId = tm->LoadTexture("bricks_bump.jpg");
+
+    Mesh meshRock = MeshBuilder::CreateSphere(30, 30, 1.0f);
+    mRenderObjectRock.meshBuffer.Initialize(meshRock);
+    mRenderObjectRock.diffuseMapId = tm->LoadTexture("rock.jpg");
+    mRenderObjectRock.specMapId = tm->LoadTexture("rock_spec.jpg");
+    mRenderObjectRock.normalMapId = tm->LoadTexture("rock_normal.jpg");
+    mRenderObjectRock.bumpMapId = tm->LoadTexture("rock_bump.jpg");
 
     std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
     mStandardEffect.Initialize(shaderFile);
@@ -29,6 +47,8 @@ void GameState::Initialize()
 void GameState::Terminate()
 {
     mRenderObject.Terminate();
+    mRenderObjectFloor.Terminate();
+    mRenderObjectRock.Terminate();
     mStandardEffect.Terminate();
 }
 void GameState::Update(float deltaTime)
@@ -41,13 +61,29 @@ void GameState::Render()
     SimpleDraw::Render(mCamera);
 
     mStandardEffect.Begin();
-    mStandardEffect.Render(mRenderObject);
+    switch (currentObject)
+    {
+    case 0:
+        mStandardEffect.Render(mRenderObject);
+        break;
+    case 1:
+        mStandardEffect.Render(mRenderObjectRock);
+        break;
+    case 2:
+        mStandardEffect.Render(mRenderObjectFloor);
+        break;
+    }
     mStandardEffect.End();
 }
 
 void GameState::DebugUI()
 {
     ImGui::Begin("Debug", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+    if(ImGui::CollapsingHeader("Object", ImGuiTreeNodeFlags_DefaultOpen))
+    {
+        ImGui::Combo("Object Shown", &currentObject, objects, IM_ARRAYSIZE(objects));
+    }
+
     if (ImGui::CollapsingHeader("Light", ImGuiTreeNodeFlags_DefaultOpen))
     {
         if (ImGui::DragFloat3("Direction#Light", &mDirectionalLight.direction.x, 0.01f))
@@ -66,9 +102,10 @@ void GameState::DebugUI()
         ImGui::ColorEdit4("Specular#Material", &mRenderObject.material.specular.r);
         ImGui::DragFloat("Shininess#Material", &mRenderObject.material.shininess, 0.01f, 0.0f, 10000.0f);
     }
-    
+
     ImGui::Separator();
-    ImGui::Text("RenderTarget");
+
+    mStandardEffect.DebugUI();
 
     ImGui::End();
 }

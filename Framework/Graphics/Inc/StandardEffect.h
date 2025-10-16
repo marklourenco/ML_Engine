@@ -37,6 +37,16 @@ namespace ML_Engine::Graphics
 			float padding = 0.0f;       // padding to mantain 16 byte alignment
 		};
 
+		struct SettingsData
+		{
+			int useDiffuseMap = 1;
+			int useSpecMap = 1;
+			int useNormalMap = 1;
+			int useBumpMap = 1;
+			float bumpWeight = 0.1f;
+			float padding[3] = { 0.0f };
+		};
+
 		using TransformBuffer = TypedConstantBuffer<TransformData>;
 		TransformBuffer mTransformBuffer;
 
@@ -46,6 +56,9 @@ namespace ML_Engine::Graphics
 		using MaterialBuffer = TypedConstantBuffer<Material>;
 		MaterialBuffer mMaterialBuffer;
 
+		using SettingsBuffer = TypedConstantBuffer<SettingsData>;
+		SettingsBuffer mSettingsBuffer;
+
 
 		VertexShader mVertexShader;
 		PixelShader mPixelShader;
@@ -53,5 +66,6 @@ namespace ML_Engine::Graphics
 
 		const Camera* mCamera = nullptr;
 		const DirectionalLight* mDirectionalLight = nullptr;
+		SettingsData mSettingsData;
 	};
 }

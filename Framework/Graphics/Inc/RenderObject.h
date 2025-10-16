@@ -17,5 +17,7 @@ namespace ML_Engine::Graphics
 		Material material;        // light data
 		TextureId diffuseMapId;   // diffuse texture for an object
 		TextureId specMapId;
+		TextureId normalMapId;
+		TextureId bumpMapId;
 	};
 }

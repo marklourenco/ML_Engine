@@ -399,6 +399,7 @@ Mesh MeshBuilder::CreateSphere(int slices, int rings, float radius)
                     radius * sin(rotation) * sin(phi),
                     radius * cos(phi),
                     radius * cos(rotation) * sin(phi) };
+
             Math::Vector3 norm = Math::Normalize(pos);
             Math::Vector3 tan = abs(Math::Dot(norm, Math::Vector3::YAxis)) < 0.999f ?
                 Math::Normalize({ -pos.z, 0.0f, pos.x }) : Math::Vector3::XAxis;

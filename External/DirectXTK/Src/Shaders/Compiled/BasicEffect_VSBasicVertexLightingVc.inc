@@ -45,7 +45,7 @@
     dcl_texcoord1 v1  // vin<4,5,6>
     dcl_texcoord2 v2  // vin<7,8,9,10>
 
-#line 54 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
+#line 54 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\Lighting.fxh"
     dp4 r0.x, v0, c15  // ::pos_ws<0>
     dp4 r0.y, v0, c16  // ::pos_ws<1>
     dp4 r0.z, v0, c17  // ::pos_ws<2>
@@ -111,28 +111,28 @@
 #line 60
     dp4 oPos.z, v0, c23  // ::VSBasicVertexLightingVc<10>
 
-#line 11 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Common.fxh"
+#line 11 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\Common.fxh"
     dp4 r0.x, v0, c14
     max r0.x, r0.x, c25.x
     min oT1.w, r0.x, c25.y  // ::VSBasicVertexLightingVc<7>
 
-#line 43 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
+#line 43 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\Lighting.fxh"
     mul r0.xyz, r2.y, c8
     mad r0.xyz, r2.x, c7, r0
     mad r0.xyz, r2.z, c9, r0
     mov r1.xyz, c1  // Parameters::DiffuseColor<0,1,2>
     mad r0.xyz, r0, r1, c2  // ::result<0,1,2>
 
-#line 181 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\BasicEffect.fx"
+#line 181 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\BasicEffect.fx"
     mul oT0.xyz, r0, v2  // ::VSBasicVertexLightingVc<0,1,2>
     mul oT0.w, v2.w, c1.w  // ::VSBasicVertexLightingVc<3>
 
-#line 60 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
+#line 60 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\Lighting.fxh"
     dp4 r0.x, v0, c21  // ::vout<0>
     dp4 r0.y, v0, c22  // ::vout<1>
     dp4 r0.z, v0, c24  // ::vout<3>
 
-#line 174 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\BasicEffect.fx"
+#line 174 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\BasicEffect.fx"
     mad oPos.xy, r0.z, c0, r0  // ::VSBasicVertexLightingVc<8,9>
     mov oPos.w, r0.z  // ::VSBasicVertexLightingVc<11>
 
@@ -206,10 +206,10 @@ ret
 
 const BYTE BasicEffect_VSBasicVertexLightingVc[] =
 {
-     68,  88,  66,  67,  16, 235, 
-     13,  22,  58,  28, 197,  84, 
-      6, 148,  96,  94,  19,  91, 
-     51, 140,   1,   0,   0,   0, 
+     68,  88,  66,  67, 207, 175, 
+    236, 249,   6, 193, 199, 186, 
+    200, 188, 115, 213,  38,  88, 
+     94, 210,   1,   0,   0,   0, 
     196,  19,   0,   0,   4,   0, 
       0,   0,  48,   0,   0,   0, 
     200,  11,   0,   0, 228,  18, 
@@ -236,7 +236,7 @@ const BYTE BasicEffect_VSBasicVertexLightingVc[] =
       0,   0,  57,   0,   0,   0, 
     108,   1,   0,   0,  14,   0, 
       0,   0, 132,   6,   0,   0, 
-    104,   3,   0,   0,  69,  58, 
+    104,   3,   0,   0,  68,  58, 
      92,  76,  97,  83,  97, 108, 
     108, 101,  92,  84, 101, 114, 
     109,  32,  55,  92,  86,  71, 
@@ -249,11 +249,11 @@ const BYTE BasicEffect_VSBasicVertexLightingVc[] =
     110, 101,  92,  69, 120, 116, 
     101, 114, 110,  97, 108,  92, 
      68, 105, 114, 101,  99, 116, 
-     88,  84,  75,  92, 115, 114, 
+     88,  84,  75,  92,  83, 114, 
      99,  92,  83, 104,  97, 100, 
     101, 114, 115,  92,  76, 105, 
     103, 104, 116, 105, 110, 103, 
-     46, 102, 120, 104,   0,  69, 
+     46, 102, 120, 104,   0,  68, 
      58,  92,  76,  97,  83,  97, 
     108, 108, 101,  92,  84, 101, 
     114, 109,  32,  55,  92,  86, 
@@ -266,11 +266,11 @@ const BYTE BasicEffect_VSBasicVertexLightingVc[] =
     105, 110, 101,  92,  69, 120, 
     116, 101, 114, 110,  97, 108, 
      92,  68, 105, 114, 101,  99, 
-    116,  88,  84,  75,  92, 115, 
+    116,  88,  84,  75,  92,  83, 
     114,  99,  92,  83, 104,  97, 
     100, 101, 114, 115,  92,  67, 
     111, 109, 109, 111, 110,  46, 
-    102, 120, 104,   0,  69,  58, 
+    102, 120, 104,   0,  68,  58, 
      92,  76,  97,  83,  97, 108, 
     108, 101,  92,  84, 101, 114, 
     109,  32,  55,  92,  86,  71, 
@@ -283,7 +283,7 @@ const BYTE BasicEffect_VSBasicVertexLightingVc[] =
     110, 101,  92,  69, 120, 116, 
     101, 114, 110,  97, 108,  92, 
      68, 105, 114, 101,  99, 116, 
-     88,  84,  75,  92, 115, 114, 
+     88,  84,  75,  92,  83, 114, 
      99,  92,  83, 104,  97, 100, 
     101, 114, 115,  92,  66,  97, 
     115, 105,  99,  69, 102, 102, 

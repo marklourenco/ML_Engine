@@ -2,6 +2,8 @@
 
 #include "MeshBuffer.h"
 #include "Transform.h"
+#include "Material.h"
+#include "TextureManager.h"
 
 namespace ML_Engine::Graphics
 {
@@ -10,7 +12,10 @@ namespace ML_Engine::Graphics
 	public:
 		void Terminate();
 
-		Transform transform;
-		MeshBuffer meshBuffer;
+		Transform transform;      // location
+		MeshBuffer meshBuffer;    // shape
+		Material material;        // light data
+		TextureId diffuseMapId;   // diffuse texture for an object
+		TextureId specMapId;
 	};
 }

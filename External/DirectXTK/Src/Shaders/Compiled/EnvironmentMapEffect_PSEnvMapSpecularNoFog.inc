@@ -45,7 +45,7 @@
     dcl_2d s0
     dcl_cube s1
 
-#line 320 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\EnvironmentMapEffect.fx"
+#line 320 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\EnvironmentMapEffect.fx"
     texld r0, t3, s1
     texld r1, t2, s0
     mul r1, r1, t0  // ::color<0,1,2,3>
@@ -84,10 +84,10 @@ ret
 
 const BYTE EnvironmentMapEffect_PSEnvMapSpecularNoFog[] =
 {
-     68,  88,  66,  67,   5,  77, 
-     80,  54, 148, 207, 127, 181, 
-    208, 192,  43, 175, 154,  86, 
-    234,  55,   1,   0,   0,   0, 
+     68,  88,  66,  67, 244, 174, 
+    174,  98,  56,  80,  55,  58, 
+    209, 222, 126, 147, 189,  44, 
+    120,  90,   1,   0,   0,   0, 
     100,   6,   0,   0,   4,   0, 
       0,   0,  48,   0,   0,   0, 
       8,   4,   0,   0, 176,   5, 
@@ -111,7 +111,7 @@ const BYTE EnvironmentMapEffect_PSEnvMapSpecularNoFog[] =
      14,   0,   0,   0, 160,   0, 
       0,   0,   4,   0,   0,   0, 
      64,   2,   0,   0,  16,   1, 
-      0,   0,  69,  58,  92,  76, 
+      0,   0,  68,  58,  92,  76, 
      97,  83,  97, 108, 108, 101, 
      92,  84, 101, 114, 109,  32, 
      55,  92,  86,  71,  80,  50, 
@@ -124,7 +124,7 @@ const BYTE EnvironmentMapEffect_PSEnvMapSpecularNoFog[] =
      92,  69, 120, 116, 101, 114, 
     110,  97, 108,  92,  68, 105, 
     114, 101,  99, 116,  88,  84, 
-     75,  92, 115, 114,  99,  92, 
+     75,  92,  83, 114,  99,  92, 
      83, 104,  97, 100, 101, 114, 
     115,  92,  69, 110, 118, 105, 
     114, 111, 110, 109, 101, 110, 

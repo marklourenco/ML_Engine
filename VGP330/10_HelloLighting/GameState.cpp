@@ -17,6 +17,9 @@ void GameState::Initialize()
 
     Mesh mesh = MeshBuilder::CreateSphere(30, 30, 1.0f);
     mRenderObject.meshBuffer.Initialize(mesh);
+    TextureManager* tm = TextureManager::Get();
+    mRenderObject.diffuseMapId = tm->LoadTexture("earth.jpg");
+    mRenderObject.specMapId = tm->LoadTexture("earth_spec.jpg");
 
     std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
     mStandardEffect.Initialize(shaderFile);
@@ -51,11 +54,18 @@ void GameState::DebugUI()
         {
             mDirectionalLight.direction = Math::Normalize(mDirectionalLight.direction);
         }
+        ImGui::ColorEdit4("Ambient#Light", &mDirectionalLight.ambient.r);
+        ImGui::ColorEdit4("Diffuse#Light", &mDirectionalLight.diffuse.r);
+        ImGui::ColorEdit4("Specular#Light", &mDirectionalLight.specular.r);
     }
-
-    ImGui::ColorEdit4("Ambient#Light", &mDirectionalLight.ambient.r);
-    ImGui::ColorEdit4("Diffuse#Light", &mDirectionalLight.diffuse.r);
-    ImGui::ColorEdit4("Specular#Light", &mDirectionalLight.specular.r);
+    if (ImGui::CollapsingHeader("Material", ImGuiTreeNodeFlags_DefaultOpen))
+    {
+        ImGui::ColorEdit4("Ambient#Material", &mRenderObject.material.ambient.r);
+        ImGui::ColorEdit4("Diffuse#Material", &mRenderObject.material.diffuse.r);
+        ImGui::ColorEdit4("Specular#Material", &mRenderObject.material.specular.r);
+        ImGui::ColorEdit4("Specular#Material", &mRenderObject.material.specular.r);
+        ImGui::DragFloat("Shininess#Material", &mRenderObject.material.shininess, 0.01f, 0.0f, 10000.0f);
+    }
     
     ImGui::Separator();
     ImGui::Text("RenderTarget");

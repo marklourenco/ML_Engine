@@ -4,6 +4,8 @@
 #include "PixelShader.h"
 #include "VertexShader.h"
 #include "DirectionalLight.h"
+#include "Material.h"
+#include "Sampler.h"
 
 namespace ML_Engine::Graphics
 {
@@ -41,9 +43,13 @@ namespace ML_Engine::Graphics
 		using LightBuffer = TypedConstantBuffer<DirectionalLight>;
 		LightBuffer mLightBuffer;
 
+		using MaterialBuffer = TypedConstantBuffer<Material>;
+		MaterialBuffer mMaterialBuffer;
+
 
 		VertexShader mVertexShader;
 		PixelShader mPixelShader;
+		Sampler mSampler;
 
 		const Camera* mCamera = nullptr;
 		const DirectionalLight* mDirectionalLight = nullptr;

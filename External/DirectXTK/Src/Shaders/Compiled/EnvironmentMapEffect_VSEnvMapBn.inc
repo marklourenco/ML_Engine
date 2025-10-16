@@ -47,16 +47,16 @@
     dcl_texcoord1 v1  // vin<4,5,6>
     dcl_texcoord2 v2  // vin<7,8>
 
-#line 11 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Utilities.fxh"
+#line 11 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\Utilities.fxh"
     mad r0.xyz, v1, c22.x, c22.y  // ::BiasX2<0,1,2>
 
-#line 65 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\EnvironmentMapEffect.fx"
+#line 65 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\EnvironmentMapEffect.fx"
     dp3 r1.x, r0, c15
     dp3 r1.y, r0, c16
     dp3 r1.z, r0, c17
     nrm r0.xyz, r1  // ::worldNormal<0,1,2>
 
-#line 33 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
+#line 33 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\Lighting.fxh"
     dp3 r1.x, -c4, r0  // ::dotL<0>
     dp3 r1.y, -c5, r0  // ::dotL<1>
     dp3 r1.z, -c6, r0  // ::dotL<2>
@@ -72,15 +72,15 @@
     mov r2.xyz, c2  // Parameters::DiffuseColor<0,1,2>
     mad oT0.xyz, r1, r2, c3  // ::VSEnvMapBn<0,1,2>
 
-#line 69 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\EnvironmentMapEffect.fx"
+#line 69 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\EnvironmentMapEffect.fx"
     dp4 oPos.z, v0, c20  // ::VSEnvMapBn<15>
 
-#line 11 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Common.fxh"
+#line 11 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\Common.fxh"
     dp4 r0.w, v0, c11
     max r0.w, r0.w, c22.z
     min oT1.w, r0.w, c22.w  // ::VSEnvMapBn<7>
 
-#line 63 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\EnvironmentMapEffect.fx"
+#line 63 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\EnvironmentMapEffect.fx"
     dp4 r1.x, v0, c12  // ::pos_ws<0>
     dp4 r1.y, v0, c13  // ::pos_ws<1>
     dp4 r1.z, v0, c14  // ::pos_ws<2>
@@ -101,10 +101,10 @@
     mad oPos.xy, r0.z, c0, r0  // ::VSEnvMapBn<13,14>
     mov oPos.w, r0.z  // ::VSEnvMapBn<16>
 
-#line 43 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\Lighting.fxh"
+#line 43 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\Lighting.fxh"
     mov oT0.w, c2.w  // ::VSEnvMapBn<3>
 
-#line 75 "E:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\src\Shaders\EnvironmentMapEffect.fx"
+#line 75 "D:\LaSalle\Term 7\VGP242 3D GRAPHICS PROGRAMMING\ML_Engine\External\DirectXTK\Src\Shaders\EnvironmentMapEffect.fx"
     mov oT1.xyz, c1.x  // ::VSEnvMapBn<4,5,6>
 
 #line 189
@@ -163,10 +163,10 @@ ret
 
 const BYTE EnvironmentMapEffect_VSEnvMapBn[] =
 {
-     68,  88,  66,  67,  33, 154, 
-    131, 204,  79,  62, 103, 224, 
-     32,  75,  88, 122, 101, 103, 
-      1, 178,   1,   0,   0,   0, 
+     68,  88,  66,  67, 229,  23, 
+     24, 119,  25, 128,  39, 207, 
+     30, 241,  77, 205, 238, 226, 
+     31,  26,   1,   0,   0,   0, 
     240,  15,   0,   0,   4,   0, 
       0,   0,  48,   0,   0,   0, 
     208,   9,   0,   0, 216,  14, 
@@ -193,7 +193,7 @@ const BYTE EnvironmentMapEffect_VSEnvMapBn[] =
       0,   0,  39,   0,   0,   0, 
     224,   1,   0,   0,  11,   0, 
       0,   0, 208,   5,   0,   0, 
-    112,   3,   0,   0,  69,  58, 
+    112,   3,   0,   0,  68,  58, 
      92,  76,  97,  83,  97, 108, 
     108, 101,  92,  84, 101, 114, 
     109,  32,  55,  92,  86,  71, 
@@ -206,12 +206,12 @@ const BYTE EnvironmentMapEffect_VSEnvMapBn[] =
     110, 101,  92,  69, 120, 116, 
     101, 114, 110,  97, 108,  92, 
      68, 105, 114, 101,  99, 116, 
-     88,  84,  75,  92, 115, 114, 
+     88,  84,  75,  92,  83, 114, 
      99,  92,  83, 104,  97, 100, 
     101, 114, 115,  92,  85, 116, 
     105, 108, 105, 116, 105, 101, 
     115,  46, 102, 120, 104,   0, 
-     69,  58,  92,  76,  97,  83, 
+     68,  58,  92,  76,  97,  83, 
      97, 108, 108, 101,  92,  84, 
     101, 114, 109,  32,  55,  92, 
      86,  71,  80,  50,  52,  50, 
@@ -224,13 +224,13 @@ const BYTE EnvironmentMapEffect_VSEnvMapBn[] =
     120, 116, 101, 114, 110,  97, 
     108,  92,  68, 105, 114, 101, 
      99, 116,  88,  84,  75,  92, 
-    115, 114,  99,  92,  83, 104, 
+     83, 114,  99,  92,  83, 104, 
      97, 100, 101, 114, 115,  92, 
      69, 110, 118, 105, 114, 111, 
     110, 109, 101, 110, 116,  77, 
      97, 112,  69, 102, 102, 101, 
      99, 116,  46, 102, 120,   0, 
-     69,  58,  92,  76,  97,  83, 
+     68,  58,  92,  76,  97,  83, 
      97, 108, 108, 101,  92,  84, 
     101, 114, 109,  32,  55,  92, 
      86,  71,  80,  50,  52,  50, 
@@ -243,11 +243,11 @@ const BYTE EnvironmentMapEffect_VSEnvMapBn[] =
     120, 116, 101, 114, 110,  97, 
     108,  92,  68, 105, 114, 101, 
      99, 116,  88,  84,  75,  92, 
-    115, 114,  99,  92,  83, 104, 
+     83, 114,  99,  92,  83, 104, 
      97, 100, 101, 114, 115,  92, 
      76, 105, 103, 104, 116, 105, 
     110, 103,  46, 102, 120, 104, 
-      0,  69,  58,  92,  76,  97, 
+      0,  68,  58,  92,  76,  97, 
      83,  97, 108, 108, 101,  92, 
      84, 101, 114, 109,  32,  55, 
      92,  86,  71,  80,  50,  52, 
@@ -260,7 +260,7 @@ const BYTE EnvironmentMapEffect_VSEnvMapBn[] =
      69, 120, 116, 101, 114, 110, 
      97, 108,  92,  68, 105, 114, 
     101,  99, 116,  88,  84,  75, 
-     92, 115, 114,  99,  92,  83, 
+     92,  83, 114,  99,  92,  83, 
     104,  97, 100, 101, 114, 115, 
      92,  67, 111, 109, 109, 111, 
     110,  46, 102, 120, 104,   0, 
